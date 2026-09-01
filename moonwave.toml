@@ -1,0 +1,49 @@
+[moonwave]
+sourceDir = ["docs"]
+
+[docusaurus]
+title = "Zzzz"
+tagline = "Zero schema serialization for Luau"
+url = "https://vel136.github.io"
+baseUrl = "/Zzzz/"
+
+[home]
+enabled = true
+includeReadme = true
+
+[[classOrder]]
+section = "API"
+classes = ["Zzzz"]
+
+[navbar]
+title = "Zzzz"
+
+[footer]
+style = "dark"
+copyright = "Copyright (c) 2026 Ve Development"
+
+[[footer.links]]
+title = "Community"
+
+[[footer.links.items]]
+label = "Discord Server"
+href = "https://discord.gg/XMYMRKcd3g"
+
+[[footer.links.items]]
+label = "Discord (Direct)"
+href = "https://discord.com/users/897026279243669504"
+
+[[footer.links]]
+title = "Social"
+
+[[footer.links.items]]
+label = "Instagram"
+href = "https://www.instagram.com/vedevelopment/"
+
+[[footer.links.items]]
+label = "X (Twitter)"
+href = "https://x.com/vedevelopment_"
+
+[[footer.links.items]]
+label = "TikTok"
+href = "https://www.tiktok.com/@vedevelopment"
