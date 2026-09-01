@@ -1,0 +1,628 @@
+<!doctype html>
+<html lang="en" dir="ltr" class="plugin-moonwave plugin-id-moonwave" data-has-hydrated="false">
+<head>
+<meta charset="UTF-8">
+<meta name="generator" content="Docusaurus v3.7.0">
+<title data-rh="true">Zzzz | Zzzz</title><meta data-rh="true" name="viewport" content="width=device-width,initial-scale=1"><meta data-rh="true" name="twitter:card" content="summary_large_image"><meta data-rh="true" property="og:url" content="https://vel136.github.io/Zzzz/api/Zzzz"><meta data-rh="true" property="og:locale" content="en"><meta data-rh="true" name="docusaurus_locale" content="en"><meta data-rh="true" name="docusaurus_tag" content="default"><meta data-rh="true" name="docsearch:language" content="en"><meta data-rh="true" name="docsearch:docusaurus_tag" content="default"><meta data-rh="true" property="og:title" content="Zzzz | Zzzz"><meta data-rh="true" name="description" content="Zero schema serialization for Luau.
+
+Zzzz takes any Luau value and turns it into a compact buffer with no type
+declarations to write and no schema to keep in sync. It works out the shape
+and picks the narrowest wire representation for every value.
+
+```lua
+local Zzzz = require(ReplicatedStorage.Zzzz)
+local Zz = Zzzz.new()
+
+local packet, instances = Zz:Serialize({
+    Coins = 5000,
+    Position = Vector3.new(10, 20, 30),
+})
+
+local data = Zz:Deserialize(packet, instances)
+```"><meta data-rh="true" property="og:description" content="Zero schema serialization for Luau.
+
+Zzzz takes any Luau value and turns it into a compact buffer with no type
+declarations to write and no schema to keep in sync. It works out the shape
+and picks the narrowest wire representation for every value.
+
+```lua
+local Zzzz = require(ReplicatedStorage.Zzzz)
+local Zz = Zzzz.new()
+
+local packet, instances = Zz:Serialize({
+    Coins = 5000,
+    Position = Vector3.new(10, 20, 30),
+})
+
+local data = Zz:Deserialize(packet, instances)
+```"><link data-rh="true" rel="canonical" href="https://vel136.github.io/Zzzz/api/Zzzz"><link data-rh="true" rel="alternate" href="https://vel136.github.io/Zzzz/api/Zzzz" hreflang="en"><link data-rh="true" rel="alternate" href="https://vel136.github.io/Zzzz/api/Zzzz" hreflang="x-default"><link rel="stylesheet" href="/Zzzz/assets/css/styles.f0e219d2.css">
+<script src="/Zzzz/assets/js/runtime~main.e8e92b6d.js" defer="defer"></script>
+<script src="/Zzzz/assets/js/main.16c31625.js" defer="defer"></script>
+</head>
+<body class="navigation-with-keyboard">
+<script>!function(){function t(t){document.documentElement.setAttribute("data-theme",t)}var e=function(){try{return new URLSearchParams(window.location.search).get("docusaurus-theme")}catch(t){}}()||function(){try{return window.localStorage.getItem("theme")}catch(t){}}();null!==e?t(e):window.matchMedia("(prefers-color-scheme: dark)").matches?t("dark"):(window.matchMedia("(prefers-color-scheme: light)").matches,t("light"))}(),function(){try{const c=new URLSearchParams(window.location.search).entries();for(var[t,e]of c)if(t.startsWith("docusaurus-data-")){var a=t.replace("docusaurus-data-","data-");document.documentElement.setAttribute(a,e)}}catch(t){}}()</script><div id="__docusaurus"><div role="region" aria-label="Skip to main content"><a class="skipToContent_fXgn" href="#__docusaurus_skipToContent_fallback">Skip to main content</a></div><nav aria-label="Main" class="navbar navbar--fixed-top"><div class="navbar__inner"><div class="navbar__items"><button aria-label="Toggle navigation bar" aria-expanded="false" class="navbar__toggle clean-btn" type="button"><svg width="30" height="30" viewBox="0 0 30 30" aria-hidden="true"><path stroke="currentColor" stroke-linecap="round" stroke-miterlimit="10" stroke-width="2" d="M4 7h22M4 15h22M4 23h22"></path></svg></button><a class="navbar__brand" href="/Zzzz/"><b class="navbar__title text--truncate">Zzzz</b></a><a class="navbar__item navbar__link" href="/Zzzz/docs/intro">Docs</a><a aria-current="page" class="navbar__item navbar__link navbar__link--active" href="/Zzzz/api/">API</a></div><div class="navbar__items navbar__items--right"><a href="https://github.com/Vel136/Zzzz" target="_blank" rel="noopener noreferrer" class="navbar__item navbar__link">GitHub<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a><div class="toggle_vylO colorModeToggle_DEke"><button class="clean-btn toggleButton_gllP toggleButtonDisabled_aARS" type="button" disabled="" title="Switch between dark and light mode (currently light mode)" aria-label="Switch between dark and light mode (currently light mode)" aria-live="polite" aria-pressed="false"><svg viewBox="0 0 24 24" width="24" height="24" class="lightToggleIcon_pyhR"><path fill="currentColor" d="M12,9c1.65,0,3,1.35,3,3s-1.35,3-3,3s-3-1.35-3-3S10.35,9,12,9 M12,7c-2.76,0-5,2.24-5,5s2.24,5,5,5s5-2.24,5-5 S14.76,7,12,7L12,7z M2,13l2,0c0.55,0,1-0.45,1-1s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S1.45,13,2,13z M20,13l2,0c0.55,0,1-0.45,1-1 s-0.45-1-1-1l-2,0c-0.55,0-1,0.45-1,1S19.45,13,20,13z M11,2v2c0,0.55,0.45,1,1,1s1-0.45,1-1V2c0-0.55-0.45-1-1-1S11,1.45,11,2z M11,20v2c0,0.55,0.45,1,1,1s1-0.45,1-1v-2c0-0.55-0.45-1-1-1C11.45,19,11,19.45,11,20z M5.99,4.58c-0.39-0.39-1.03-0.39-1.41,0 c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0s0.39-1.03,0-1.41L5.99,4.58z M18.36,16.95 c-0.39-0.39-1.03-0.39-1.41,0c-0.39,0.39-0.39,1.03,0,1.41l1.06,1.06c0.39,0.39,1.03,0.39,1.41,0c0.39-0.39,0.39-1.03,0-1.41 L18.36,16.95z M19.42,5.99c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06c-0.39,0.39-0.39,1.03,0,1.41 s1.03,0.39,1.41,0L19.42,5.99z M7.05,18.36c0.39-0.39,0.39-1.03,0-1.41c-0.39-0.39-1.03-0.39-1.41,0l-1.06,1.06 c-0.39,0.39-0.39,1.03,0,1.41s1.03,0.39,1.41,0L7.05,18.36z"></path></svg><svg viewBox="0 0 24 24" width="24" height="24" class="darkToggleIcon_wfgR"><path fill="currentColor" d="M9.37,5.51C9.19,6.15,9.1,6.82,9.1,7.5c0,4.08,3.32,7.4,7.4,7.4c0.68,0,1.35-0.09,1.99-0.27C17.45,17.19,14.93,19,12,19 c-3.86,0-7-3.14-7-7C5,9.07,6.81,6.55,9.37,5.51z M12,3c-4.97,0-9,4.03-9,9s4.03,9,9,9s9-4.03,9-9c0-0.46-0.04-0.92-0.1-1.36 c-0.98,1.37-2.58,2.26-4.4,2.26c-2.98,0-5.4-2.42-5.4-5.4c0-1.81,0.89-3.42,2.26-4.4C12.92,3.04,12.46,3,12,3L12,3z"></path></svg></button></div><div class="navbarSearchContainer_Bca1"><div class="navbar__search"><span aria-label="expand searchbar" role="button" class="search-icon" tabindex="0"></span><input id="search_input_react" type="search" placeholder="Loading..." aria-label="Search" class="navbar__search-input search-bar" disabled=""></div></div></div></div><div role="presentation" class="navbar-sidebar__backdrop"></div></nav><div id="__docusaurus_skipToContent_fallback" class="main-wrapper mainWrapper_z2l0 docPageContainer_wNNk"><div class="docPage_Dpn1"><div class="docSidebarContainer_o_re"><div class="sidebar_njMd"><nav aria-label="Docs sidebar" class="menu thin-scrollbar menu_SIkG"><ul class="theme-doc-sidebar-menu menu__list"><li class="theme-doc-sidebar-item-category theme-doc-sidebar-item-category-level-1 menu__list-item"><div class="menu__list-item-collapsible"><a class="menu__link menu__link--sublist menu__link--sublist-caret menu__link--active" role="button" aria-expanded="true" href="/Zzzz/api/Zzzz">API</a></div><ul style="display:block;overflow:visible;height:auto" class="menu__list"><li class="theme-doc-sidebar-item-link theme-doc-sidebar-item-link-level-2 menu__list-item"><a class="menu__link menu__link--active" aria-current="page" tabindex="0" href="/Zzzz/api/Zzzz">​Zzzz</a></li></ul></li></ul></nav></div></div><main class="docMainContainer_HJE1"><div class="container padding-vert--lg"><div class="row"><div class="col docItemCol_MU3C"><div class="docItemContainer_Wv98"><article><div class="member_J0w1 markdown"><div class="tocCollapsible_ETCw theme-doc-toc-mobile tocMobile_oUs_"><button type="button" class="clean-btn tocCollapsibleButton_TO0P">On this page</button></div><header><h1 class="docTitle_mZRt" style="text-decoration:none"><span style="display:inline-block">Zzzz</span></h1><div class="luaClassTags_EipM"></div><div>
+<p>Zero schema serialization for Luau.</p>
+<p>
+  Zzzz takes any Luau value and turns it into a compact buffer with no type
+  declarations to write and no schema to keep in sync. It works out the shape
+  and picks the narrowest wire representation for every value.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> Zzzz <span class="token operator">=</span> <span class="token function">require</span><span class="token punctuation">(</span>ReplicatedStorage<span class="token punctuation">.</span>Zzzz<span class="token punctuation">)</span>
+<span class="token keyword">local</span> Zz <span class="token operator">=</span> Zzzz<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">)</span>
+
+<span class="token keyword">local</span> packet<span class="token punctuation">,</span> instances <span class="token operator">=</span> Zz<span class="token punctuation">:</span><span class="token function">Serialize</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    Coins <span class="token operator">=</span> <span class="token number">5000</span><span class="token punctuation">,</span>
+    Position <span class="token operator">=</span> Vector3<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token number">10</span><span class="token punctuation">,</span> <span class="token number">20</span><span class="token punctuation">,</span> <span class="token number">30</span><span class="token punctuation">)</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+
+<span class="token keyword">local</span> data <span class="token operator">=</span> Zz<span class="token punctuation">:</span><span class="token function">Deserialize</span><span class="token punctuation">(</span>packet<span class="token punctuation">,</span> instances<span class="token punctuation">)</span>
+</code></pre>
+</div></header><h2 class="anchor anchorWithStickyNavbar_LWe7" id="functions">Functions<a href="#functions" class="hash-link" aria-label="Direct link to Functions" title="Direct link to Functions">​</a></h2><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="new"><code style="text-decoration:none">new</code><a href="#new" class="hash-link" aria-label="Direct link to new" title="Direct link to new">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Vel136/Zzzz/blob/master/docs/Zzzz.lua#L42"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Zzzz<!-- -->.</code><code class="green_DgR4">new</code><code>(</code><div class="inset_uKQm"><div><code>options<!-- -->: </code><code class="blue_P4bS">table?</code><span class="inlineDescription_G7Er">-- <span>
+<p>InstanceMode, StructureCache, Precision, BitPack, Columnar, Correlate, GuardDiff, MaxDepth, MaxNodes</p>
+</span></span></div></div><code>) → </code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="/Zzzz/api/Zzzz">Zzzz</a></code></div><div>
+<p>Creates a new Zzzz instance.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> Zz <span class="token operator">=</span> Zzzz<span class="token punctuation">.</span><span class="token function">new</span><span class="token punctuation">(</span><span class="token punctuation">{</span>
+    Precision <span class="token operator">=</span> <span class="token number">0.01</span><span class="token punctuation">,</span>
+    Columnar <span class="token operator">=</span> <span class="token keyword">true</span><span class="token punctuation">,</span>
+<span class="token punctuation">}</span><span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="schema"><code style="text-decoration:none">schema</code><a href="#schema" class="hash-link" aria-label="Direct link to schema" title="Direct link to schema">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Vel136/Zzzz/blob/master/docs/Zzzz.lua#L58"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Zzzz<!-- -->.</code><code class="green_DgR4">schema</code><code>(</code><div class="inset_uKQm"><div><code>sample<!-- -->: </code><code class="blue_P4bS">any</code><code>,</code><span class="inlineDescription_G7Er">-- <span>
+<p>representative sample data</p>
+</span></span></div><div><code>options<!-- -->: </code><code class="blue_P4bS">table?</code></div></div><code>) → </code><code class="blue_P4bS">Schema</code></div><div>
+<p>
+  Derives a schema from sample data, so a repeated shape can be encoded by
+  replaying recorded decisions instead of rediscovering them each call.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> Schema <span class="token operator">=</span> Zzzz<span class="token punctuation">.</span><span class="token function">schema</span><span class="token punctuation">(</span>sampleSaves<span class="token punctuation">,</span> <span class="token punctuation">{</span> Columnar <span class="token operator">=</span> <span class="token keyword">true</span> <span class="token punctuation">}</span><span class="token punctuation">)</span>
+<span class="token keyword">local</span> packet <span class="token operator">=</span> Schema<span class="token punctuation">:</span><span class="token function">Encode</span><span class="token punctuation">(</span>saves<span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="loadSchema"><code style="text-decoration:none">loadSchema</code><a href="#loadSchema" class="hash-link" aria-label="Direct link to loadSchema" title="Direct link to loadSchema">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Vel136/Zzzz/blob/master/docs/Zzzz.lua#L72"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Zzzz<!-- -->.</code><code class="green_DgR4">loadSchema</code><code>(</code><div class="inset_uKQm"><div><code>stored<!-- -->: </code><code class="blue_P4bS">buffer</code><span class="inlineDescription_G7Er">-- <span>
+<p>bytes from Schema:Save</p>
+</span></span></div></div><code>) → </code><code class="blue_P4bS">Schema</code></div><div>
+<p>
+  Reads back a schema saved with <code>Schema:Save</code>, so derivation happens once
+  rather than once per server start.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> Schema <span class="token operator">=</span> Zzzz<span class="token punctuation">.</span><span class="token function">loadSchema</span><span class="token punctuation">(</span>storedBytes<span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Serialize"><code style="text-decoration:none">Serialize</code><a href="#Serialize" class="hash-link" aria-label="Direct link to Serialize" title="Direct link to Serialize">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Vel136/Zzzz/blob/master/docs/Zzzz.lua#L88"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Zzzz<!-- -->:</code><code class="green_DgR4">Serialize</code><code>(</code><code>value<!-- -->: </code><code class="blue_P4bS">any</code><code>) → </code><code>(</code><div class="inset_uKQm"><div><code class="blue_P4bS">buffer</code><code>,</code></div><div><code class="purple_ieR2">{</code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/datatype/Instance" target="_blank" rel="noopener noreferrer">Instance<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code class="purple_ieR2">}</code></div></div><code>)</code></div><div>
+<p>
+  Serializes any supported value. Returns the packet buffer and a side array
+  of Instances the value referred to, since Instance references cannot travel
+  inside a buffer.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> packet<span class="token punctuation">,</span> instances <span class="token operator">=</span> Zz<span class="token punctuation">:</span><span class="token function">Serialize</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Deserialize"><code style="text-decoration:none">Deserialize</code><a href="#Deserialize" class="hash-link" aria-label="Direct link to Deserialize" title="Direct link to Deserialize">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Vel136/Zzzz/blob/master/docs/Zzzz.lua#L102"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Zzzz<!-- -->:</code><code class="green_DgR4">Deserialize</code><code>(</code><div class="inset_uKQm"><div><code>packet<!-- -->: </code><code class="blue_P4bS">buffer</code><code>,</code></div><div><code>instances<!-- -->: </code><code class="purple_ieR2">{</code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/datatype/Instance" target="_blank" rel="noopener noreferrer">Instance<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code class="purple_ieR2">}</code><code class="blue_P4bS">?</code></div></div><code>) → </code><code class="blue_P4bS">any</code></div><div>
+<p>Rebuilds a value from a packet.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> value <span class="token operator">=</span> Zz<span class="token punctuation">:</span><span class="token function">Deserialize</span><span class="token punctuation">(</span>packet<span class="token punctuation">,</span> instances<span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Diff"><code style="text-decoration:none">Diff</code><a href="#Diff" class="hash-link" aria-label="Direct link to Diff" title="Direct link to Diff">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Vel136/Zzzz/blob/master/docs/Zzzz.lua#L119"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Zzzz<!-- -->:</code><code class="green_DgR4">Diff</code><code>(</code><div class="inset_uKQm"><div><code>baseline<!-- -->:  </code><code class="blue_P4bS">any</code><code>,</code></div><div><code>current<!-- -->: </code><code class="blue_P4bS">any</code></div></div><code>) → </code><code>(</code><div class="inset_uKQm"><div><code class="blue_P4bS">buffer</code><code>,</code></div><div><code class="purple_ieR2">{</code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/datatype/Instance" target="_blank" rel="noopener noreferrer">Instance<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code class="purple_ieR2">}</code></div></div><code>)</code></div><div>
+<p>
+  Serializes only what differs from a value the receiver already holds.
+  Writes both a patch and the full form and returns whichever is smaller, so
+  it is never larger than a plain Serialize.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> packet <span class="token operator">=</span> Zz<span class="token punctuation">:</span><span class="token function">Diff</span><span class="token punctuation">(</span>lastSent<span class="token punctuation">,</span> state<span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="DiffOnly"><code style="text-decoration:none">DiffOnly</code><a href="#DiffOnly" class="hash-link" aria-label="Direct link to DiffOnly" title="Direct link to DiffOnly">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Vel136/Zzzz/blob/master/docs/Zzzz.lua#L136"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Zzzz<!-- -->:</code><code class="green_DgR4">DiffOnly</code><code>(</code><div class="inset_uKQm"><div><code>baseline<!-- -->: </code><code class="blue_P4bS">any</code><code>,</code></div><div><code>current<!-- -->: </code><code class="blue_P4bS">any</code></div></div><code>) → </code><code>(</code><div class="inset_uKQm"><div><code class="blue_P4bS">buffer</code><code>,</code></div><div><code class="purple_ieR2">{</code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/datatype/Instance" target="_blank" rel="noopener noreferrer">Instance<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code class="purple_ieR2">}</code></div></div><code>)</code></div><div>
+<p>
+  A patch, without encoding the full form to compare against it. Roughly
+  twenty times faster than Diff on sparse traffic, but a patch can exceed the
+  full form's size when most of the data changed.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> packet <span class="token operator">=</span> Zz<span class="token punctuation">:</span><span class="token function">DiffOnly</span><span class="token punctuation">(</span>lastSent<span class="token punctuation">,</span> state<span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Patch"><code style="text-decoration:none">Patch</code><a href="#Patch" class="hash-link" aria-label="Direct link to Patch" title="Direct link to Patch">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Vel136/Zzzz/blob/master/docs/Zzzz.lua#L152"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Zzzz<!-- -->:</code><code class="green_DgR4">Patch</code><code>(</code><div class="inset_uKQm"><div><code>baseline<!-- -->: </code><code class="blue_P4bS">any</code><code>,</code></div><div><code>packet<!-- -->: </code><code class="blue_P4bS">buffer</code><code>,</code></div><div><code>instances<!-- -->: </code><code class="purple_ieR2">{</code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/datatype/Instance" target="_blank" rel="noopener noreferrer">Instance<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code class="purple_ieR2">}</code><code class="blue_P4bS">?</code></div></div><code>) → </code><code class="blue_P4bS">any</code></div><div>
+<p>
+  Rebuilds a value from whatever Diff or DiffOnly returned. Accepts a patch
+  or a whole packet, so the caller does not have to track which was sent.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> state <span class="token operator">=</span> Zz<span class="token punctuation">:</span><span class="token function">Patch</span><span class="token punctuation">(</span>lastSent<span class="token punctuation">,</span> packet<span class="token punctuation">,</span> instances<span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="IsPatch"><code style="text-decoration:none">IsPatch</code><a href="#IsPatch" class="hash-link" aria-label="Direct link to IsPatch" title="Direct link to IsPatch">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Vel136/Zzzz/blob/master/docs/Zzzz.lua#L167"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Zzzz<!-- -->:</code><code class="green_DgR4">IsPatch</code><code>(</code><code>packet<!-- -->: </code><code class="blue_P4bS">buffer</code><code>) → </code><code class="blue_P4bS">boolean</code></div><div>
+<p>Reports whether a packet is a patch rather than a whole value.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">if</span> Zz<span class="token punctuation">:</span><span class="token function">IsPatch</span><span class="token punctuation">(</span>packet<span class="token punctuation">)</span> <span class="token keyword">then</span>
+    <span class="token function">print</span><span class="token punctuation">(</span><span class="token string">"patch"</span><span class="token punctuation">)</span>
+<span class="token keyword">end</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="SerializeToString"><code style="text-decoration:none">SerializeToString</code><a href="#SerializeToString" class="hash-link" aria-label="Direct link to SerializeToString" title="Direct link to SerializeToString">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Vel136/Zzzz/blob/master/docs/Zzzz.lua#L182"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Zzzz<!-- -->:</code><code class="green_DgR4">SerializeToString</code><code>(</code><code>value<!-- -->: </code><code class="blue_P4bS">any</code><code>) → </code><code>(</code><div class="inset_uKQm"><div><code class="blue_P4bS">string</code><code>,</code></div><div><code class="purple_ieR2">{</code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/datatype/Instance" target="_blank" rel="noopener noreferrer">Instance<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code class="purple_ieR2">}</code></div></div><code>)</code></div><div>
+<p>
+  Serializes to a string rather than a buffer, for DataStores and anywhere
+  else that will not take a buffer.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> text<span class="token punctuation">,</span> instances <span class="token operator">=</span> Zz<span class="token punctuation">:</span><span class="token function">SerializeToString</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="DeserializeFromString"><code style="text-decoration:none">DeserializeFromString</code><a href="#DeserializeFromString" class="hash-link" aria-label="Direct link to DeserializeFromString" title="Direct link to DeserializeFromString">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Vel136/Zzzz/blob/master/docs/Zzzz.lua#L196"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Zzzz<!-- -->:</code><code class="green_DgR4">DeserializeFromString</code><code>(</code><div class="inset_uKQm"><div><code>packet<!-- -->: </code><code class="blue_P4bS">string</code><code>,</code></div><div><code>instances<!-- -->: </code><code class="purple_ieR2">{</code><code class="blue_P4bS"><a style="text-decoration:underline;color:inherit" href="https://developer.roblox.com/en-us/api-reference/datatype/Instance" target="_blank" rel="noopener noreferrer">Instance<svg xmlns="http://www.w3.org/2000/svg" aria-hidden="true" x="0px" y="0px" viewBox="0 0 100 100" width="15" height="15" class="icon outbound" style="color:gray;vertical-align:middle;margin-left:2px"><path fill="currentColor" d="M18.8,85.1h56l0,0c2.2,0,4-1.8,4-4v-32h-8v28h-48v-48h28v-8h-32l0,0c-2.2,0-4,1.8-4,4v56C14.8,83.3,16.6,85.1,18.8,85.1z"></path> <polygon fill="currentColor" points="45.7,48.7 51.3,54.3 77.2,28.5 77.2,37.2 85.2,37.2 85.2,14.9 62.8,14.9 62.8,22.9 71.5,22.9"></polygon></svg></a></code><code class="purple_ieR2">}</code><code class="blue_P4bS">?</code></div></div><code>) → </code><code class="blue_P4bS">any</code></div><div>
+<p>Rebuilds a value from a string produced by SerializeToString.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> value <span class="token operator">=</span> Zz<span class="token punctuation">:</span><span class="token function">DeserializeFromString</span><span class="token punctuation">(</span>text<span class="token punctuation">,</span> instances<span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Inspect"><code style="text-decoration:none">Inspect</code><a href="#Inspect" class="hash-link" aria-label="Direct link to Inspect" title="Direct link to Inspect">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Vel136/Zzzz/blob/master/docs/Zzzz.lua#L210"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Zzzz<!-- -->:</code><code class="green_DgR4">Inspect</code><code>(</code><code>value<!-- -->: </code><code class="blue_P4bS">any</code><code>) → </code><code class="blue_P4bS">table</code></div><div>
+<p>
+  Describes what a value costs to serialize without sending it anywhere:
+  packet size, structure reuse, and a breakdown of the value types involved.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> report <span class="token operator">=</span> Zz<span class="token punctuation">:</span><span class="token function">Inspect</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="InspectToString"><code style="text-decoration:none">InspectToString</code><a href="#InspectToString" class="hash-link" aria-label="Direct link to InspectToString" title="Direct link to InspectToString">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Vel136/Zzzz/blob/master/docs/Zzzz.lua#L223"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Zzzz<!-- -->:</code><code class="green_DgR4">InspectToString</code><code>(</code><code>value<!-- -->: </code><code class="blue_P4bS">any</code><code>) → </code><code class="blue_P4bS">string</code></div><div>
+<p>Human readable form of Inspect, for printing during development.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token function">print</span><span class="token punctuation">(</span>Zz<span class="token punctuation">:</span><span class="token function">InspectToString</span><span class="token punctuation">(</span>value<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="InspectDiff"><code style="text-decoration:none">InspectDiff</code><a href="#InspectDiff" class="hash-link" aria-label="Direct link to InspectDiff" title="Direct link to InspectDiff">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Vel136/Zzzz/blob/master/docs/Zzzz.lua#L237"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Zzzz<!-- -->:</code><code class="green_DgR4">InspectDiff</code><code>(</code><div class="inset_uKQm"><div><code>baseline<!-- -->: </code><code class="blue_P4bS">any</code><code>,</code></div><div><code>current<!-- -->: </code><code class="blue_P4bS">any</code></div></div><code>) → </code><code class="blue_P4bS">table</code></div><div>
+<p>Describes what a patch costs and what form each of its columns chose.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> report <span class="token operator">=</span> Zz<span class="token punctuation">:</span><span class="token function">InspectDiff</span><span class="token punctuation">(</span>baseline<span class="token punctuation">,</span> current<span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="InspectDiffToString"><code style="text-decoration:none">InspectDiffToString</code><a href="#InspectDiffToString" class="hash-link" aria-label="Direct link to InspectDiffToString" title="Direct link to InspectDiffToString">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Vel136/Zzzz/blob/master/docs/Zzzz.lua#L251"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Zzzz<!-- -->:</code><code class="green_DgR4">InspectDiffToString</code><code>(</code><div class="inset_uKQm"><div><code>baseline<!-- -->: </code><code class="blue_P4bS">any</code><code>,</code></div><div><code>current<!-- -->: </code><code class="blue_P4bS">any</code></div></div><code>) → </code><code class="blue_P4bS">string</code></div><div>
+<p>Human readable form of InspectDiff, for printing during development.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token function">print</span><span class="token punctuation">(</span>Zz<span class="token punctuation">:</span><span class="token function">InspectDiffToString</span><span class="token punctuation">(</span>baseline<span class="token punctuation">,</span> current<span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="Benchmark"><code style="text-decoration:none">Benchmark</code><a href="#Benchmark" class="hash-link" aria-label="Direct link to Benchmark" title="Direct link to Benchmark">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Vel136/Zzzz/blob/master/docs/Zzzz.lua#L266"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Zzzz<!-- -->:</code><code class="green_DgR4">Benchmark</code><code>(</code><div class="inset_uKQm"><div><code>value<!-- -->: </code><code class="blue_P4bS">any</code><code>,</code></div><div><code>iterations<!-- -->: </code><code class="blue_P4bS">number?</code></div></div><code>) → </code><code class="blue_P4bS">table</code></div><div>
+<p>
+  Times a round trip. Reports per call milliseconds averaged over the given
+  number of iterations, and packet size.
+</p>
+<pre class="language-lua"><code class="language-lua"><span class="token keyword">local</span> result <span class="token operator">=</span> Zz<span class="token punctuation">:</span><span class="token function">Benchmark</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span>
+</code></pre>
+</div><div class="divider_rE5g"></div><h3 class="anchor anchorWithStickyNavbar_LWe7" id="BenchmarkToString"><code style="text-decoration:none">BenchmarkToString</code><a href="#BenchmarkToString" class="hash-link" aria-label="Direct link to BenchmarkToString" title="Direct link to BenchmarkToString">​</a></h3><div class="repositoryDetailsContainer_BPdw"><a class="sourceButton_sEho" href="https://github.com/Vel136/Zzzz/blob/master/docs/Zzzz.lua#L280"><div class="sourceButtonText_Vh0m">&lt;/&gt;</div></a></div><div class="memberString_GwaU"><code>Zzzz<!-- -->:</code><code class="green_DgR4">BenchmarkToString</code><code>(</code><div class="inset_uKQm"><div><code>value<!-- -->: </code><code class="blue_P4bS">any</code><code>,</code></div><div><code>iterations<!-- -->: </code><code class="blue_P4bS">number?</code></div></div><code>) → </code><code class="blue_P4bS">string</code></div><div>
+<p>Human readable form of Benchmark, for printing during development.</p>
+<pre class="language-lua"><code class="language-lua"><span class="token function">print</span><span class="token punctuation">(</span>Zz<span class="token punctuation">:</span><span class="token function">BenchmarkToString</span><span class="token punctuation">(</span>value<span class="token punctuation">,</span> <span class="token number">100</span><span class="token punctuation">)</span><span class="token punctuation">)</span>
+</code></pre>
+</div></div></article></div><details><summary>Show raw api</summary><pre style="max-width:100%;white-space:pre-wrap">{
+    &quot;functions&quot;: [
+        {
+            &quot;name&quot;: &quot;new&quot;,
+            &quot;desc&quot;: &quot;Creates a new Zzzz instance.\n\n```lua\nlocal Zz = Zzzz.new({\n    Precision = 0.01,\n    Columnar = true,\n})\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;options&quot;,
+                    &quot;desc&quot;: &quot;InstanceMode, StructureCache, Precision, BitPack, Columnar, Correlate, GuardDiff, MaxDepth, MaxNodes&quot;,
+                    &quot;lua_type&quot;: &quot;table?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Zzzz&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 42,
+                &quot;path&quot;: &quot;docs/Zzzz.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;schema&quot;,
+            &quot;desc&quot;: &quot;Derives a schema from sample data, so a repeated shape can be encoded by\nreplaying recorded decisions instead of rediscovering them each call.\n\n```lua\nlocal Schema = Zzzz.schema(sampleSaves, { Columnar = true })\nlocal packet = Schema:Encode(saves)\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;sample&quot;,
+                    &quot;desc&quot;: &quot;representative sample data&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;options&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;table?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Schema&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 58,
+                &quot;path&quot;: &quot;docs/Zzzz.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;loadSchema&quot;,
+            &quot;desc&quot;: &quot;Reads back a schema saved with `Schema:Save`, so derivation happens once\nrather than once per server start.\n\n```lua\nlocal Schema = Zzzz.loadSchema(storedBytes)\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;stored&quot;,
+                    &quot;desc&quot;: &quot;bytes from Schema:Save&quot;,
+                    &quot;lua_type&quot;: &quot;buffer&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;Schema&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;static&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 72,
+                &quot;path&quot;: &quot;docs/Zzzz.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Serialize&quot;,
+            &quot;desc&quot;: &quot;Serializes any supported value. Returns the packet buffer and a side array\nof Instances the value referred to, since Instance references cannot travel\ninside a buffer.\n\n```lua\nlocal packet, instances = Zz:Serialize(value)\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;value&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;buffer&quot;
+                },
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;{Instance}&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 88,
+                &quot;path&quot;: &quot;docs/Zzzz.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Deserialize&quot;,
+            &quot;desc&quot;: &quot;Rebuilds a value from a packet.\n\n```lua\nlocal value = Zz:Deserialize(packet, instances)\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;packet&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;buffer&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;instances&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;{Instance}?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 102,
+                &quot;path&quot;: &quot;docs/Zzzz.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Diff&quot;,
+            &quot;desc&quot;: &quot;Serializes only what differs from a value the receiver already holds.\nWrites both a patch and the full form and returns whichever is smaller, so\nit is never larger than a plain Serialize.\n\n```lua\nlocal packet = Zz:Diff(lastSent, state)\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;baseline&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;current&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;buffer&quot;
+                },
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;{Instance}&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 119,
+                &quot;path&quot;: &quot;docs/Zzzz.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;DiffOnly&quot;,
+            &quot;desc&quot;: &quot;A patch, without encoding the full form to compare against it. Roughly\ntwenty times faster than Diff on sparse traffic, but a patch can exceed the\nfull form&#x27;s size when most of the data changed.\n\n```lua\nlocal packet = Zz:DiffOnly(lastSent, state)\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;baseline&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;current&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;buffer&quot;
+                },
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;{Instance}&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 136,
+                &quot;path&quot;: &quot;docs/Zzzz.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Patch&quot;,
+            &quot;desc&quot;: &quot;Rebuilds a value from whatever Diff or DiffOnly returned. Accepts a patch\nor a whole packet, so the caller does not have to track which was sent.\n\n```lua\nlocal state = Zz:Patch(lastSent, packet, instances)\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;baseline&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;packet&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;buffer&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;instances&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;{Instance}?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 152,
+                &quot;path&quot;: &quot;docs/Zzzz.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;IsPatch&quot;,
+            &quot;desc&quot;: &quot;Reports whether a packet is a patch rather than a whole value.\n\n```lua\nif Zz:IsPatch(packet) then\n    print(\&quot;patch\&quot;)\nend\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;packet&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;buffer&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;boolean&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 167,
+                &quot;path&quot;: &quot;docs/Zzzz.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;SerializeToString&quot;,
+            &quot;desc&quot;: &quot;Serializes to a string rather than a buffer, for DataStores and anywhere\nelse that will not take a buffer.\n\n```lua\nlocal text, instances = Zz:SerializeToString(value)\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;value&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                },
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;{Instance}&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 182,
+                &quot;path&quot;: &quot;docs/Zzzz.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;DeserializeFromString&quot;,
+            &quot;desc&quot;: &quot;Rebuilds a value from a string produced by SerializeToString.\n\n```lua\nlocal value = Zz:DeserializeFromString(text, instances)\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;packet&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;instances&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;{Instance}?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 196,
+                &quot;path&quot;: &quot;docs/Zzzz.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Inspect&quot;,
+            &quot;desc&quot;: &quot;Describes what a value costs to serialize without sending it anywhere:\npacket size, structure reuse, and a breakdown of the value types involved.\n\n```lua\nlocal report = Zz:Inspect(value)\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;value&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;table&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 210,
+                &quot;path&quot;: &quot;docs/Zzzz.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;InspectToString&quot;,
+            &quot;desc&quot;: &quot;Human readable form of Inspect, for printing during development.\n\n```lua\nprint(Zz:InspectToString(value))\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;value&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 223,
+                &quot;path&quot;: &quot;docs/Zzzz.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;InspectDiff&quot;,
+            &quot;desc&quot;: &quot;Describes what a patch costs and what form each of its columns chose.\n\n```lua\nlocal report = Zz:InspectDiff(baseline, current)\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;baseline&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;current&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;table&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 237,
+                &quot;path&quot;: &quot;docs/Zzzz.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;InspectDiffToString&quot;,
+            &quot;desc&quot;: &quot;Human readable form of InspectDiff, for printing during development.\n\n```lua\nprint(Zz:InspectDiffToString(baseline, current))\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;baseline&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;current&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 251,
+                &quot;path&quot;: &quot;docs/Zzzz.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;Benchmark&quot;,
+            &quot;desc&quot;: &quot;Times a round trip. Reports per call milliseconds averaged over the given\nnumber of iterations, and packet size.\n\n```lua\nlocal result = Zz:Benchmark(value, 100)\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;value&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;iterations&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;table&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 266,
+                &quot;path&quot;: &quot;docs/Zzzz.lua&quot;
+            }
+        },
+        {
+            &quot;name&quot;: &quot;BenchmarkToString&quot;,
+            &quot;desc&quot;: &quot;Human readable form of Benchmark, for printing during development.\n\n```lua\nprint(Zz:BenchmarkToString(value, 100))\n```&quot;,
+            &quot;params&quot;: [
+                {
+                    &quot;name&quot;: &quot;value&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;any&quot;
+                },
+                {
+                    &quot;name&quot;: &quot;iterations&quot;,
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;number?&quot;
+                }
+            ],
+            &quot;returns&quot;: [
+                {
+                    &quot;desc&quot;: &quot;&quot;,
+                    &quot;lua_type&quot;: &quot;string&quot;
+                }
+            ],
+            &quot;function_type&quot;: &quot;method&quot;,
+            &quot;source&quot;: {
+                &quot;line&quot;: 280,
+                &quot;path&quot;: &quot;docs/Zzzz.lua&quot;
+            }
+        }
+    ],
+    &quot;properties&quot;: [],
+    &quot;types&quot;: [],
+    &quot;name&quot;: &quot;Zzzz&quot;,
+    &quot;desc&quot;: &quot;Zero schema serialization for Luau.\n\nZzzz takes any Luau value and turns it into a compact buffer with no type\ndeclarations to write and no schema to keep in sync. It works out the shape\nand picks the narrowest wire representation for every value.\n\n```lua\nlocal Zzzz = require(ReplicatedStorage.Zzzz)\nlocal Zz = Zzzz.new()\n\nlocal packet, instances = Zz:Serialize({\n    Coins = 5000,\n    Position = Vector3.new(10, 20, 30),\n})\n\nlocal data = Zz:Deserialize(packet, instances)\n```&quot;,
+    &quot;source&quot;: {
+        &quot;line&quot;: 26,
+        &quot;path&quot;: &quot;docs/Zzzz.lua&quot;
+    }
+}</pre></details></div><div class="col col--3"><div class="tableOfContents_bqdL thin-scrollbar"><ul class="table-of-contents table-of-contents__left-border"><li><a href="#functions" class="table-of-contents__link toc-highlight">Functions</a><ul><li><a href="#Benchmark" class="table-of-contents__link toc-highlight">:Benchmark</a></li><li><a href="#BenchmarkToString" class="table-of-contents__link toc-highlight">:BenchmarkToString</a></li><li><a href="#Deserialize" class="table-of-contents__link toc-highlight">:Deserialize</a></li><li><a href="#DeserializeFromString" class="table-of-contents__link toc-highlight">:DeserializeFromString</a></li><li><a href="#Diff" class="table-of-contents__link toc-highlight">:Diff</a></li><li><a href="#DiffOnly" class="table-of-contents__link toc-highlight">:DiffOnly</a></li><li><a href="#Inspect" class="table-of-contents__link toc-highlight">:Inspect</a></li><li><a href="#InspectDiff" class="table-of-contents__link toc-highlight">:InspectDiff</a></li><li><a href="#InspectDiffToString" class="table-of-contents__link toc-highlight">:InspectDiffToString</a></li><li><a href="#InspectToString" class="table-of-contents__link toc-highlight">:InspectToString</a></li><li><a href="#IsPatch" class="table-of-contents__link toc-highlight">:IsPatch</a></li><li><a href="#Patch" class="table-of-contents__link toc-highlight">:Patch</a></li><li><a href="#Serialize" class="table-of-contents__link toc-highlight">:Serialize</a></li><li><a href="#SerializeToString" class="table-of-contents__link toc-highlight">:SerializeToString</a></li><li><a href="#loadSchema" class="table-of-contents__link toc-highlight">.loadSchema</a></li><li><a href="#new" class="table-of-contents__link toc-highlight">.new</a></li><li><a href="#schema" class="table-of-contents__link toc-highlight">.schema</a></li></ul></li></ul></div></div></div></div></main></div></div><footer class="footer footer--dark"><div class="container container-fluid"><div class="row footer__links"><div class="col footer__col"><div class="footer__title">Community</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://discord.gg/XMYMRKcd3g" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord Server<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://discord.com/users/897026279243669504" target="_blank" rel="noopener noreferrer" class="footer__link-item">Discord (Direct)<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div><div class="col footer__col"><div class="footer__title">Social</div><ul class="footer__items clean-list"><li class="footer__item"><a href="https://www.instagram.com/vedevelopment/" target="_blank" rel="noopener noreferrer" class="footer__link-item">Instagram<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://x.com/vedevelopment_" target="_blank" rel="noopener noreferrer" class="footer__link-item">X (Twitter)<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li><li class="footer__item"><a href="https://www.tiktok.com/@vedevelopment" target="_blank" rel="noopener noreferrer" class="footer__link-item">TikTok<svg width="13.5" height="13.5" aria-hidden="true" viewBox="0 0 24 24" class="iconExternalLink_nPIU"><path fill="currentColor" d="M21 13v10h-21v-19h12v2h-10v15h17v-8h2zm3-12h-10.988l4.035 4-6.977 7.07 2.828 2.828 6.977-7.07 4.125 4.172v-11z"></path></svg></a></li></ul></div></div><div class="footer__bottom text--center"><div class="footer__copyright">Copyright (c) 2026 Ve Development</div></div></div></footer></div>
+</body>
+</html>

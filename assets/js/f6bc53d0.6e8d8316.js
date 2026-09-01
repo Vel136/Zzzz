@@ -1,0 +1,1 @@
+"use strict";(self.webpackChunkdocs=self.webpackChunkdocs||[]).push([[954],{4410:s=>{s.exports=JSON.parse('{"sourceUrl":"https://github.com/Vel136/Zzzz/blob/master","baseUrl":"/Zzzz/","classOrder":[{"section":"API","classes":["Zzzz"]}],"apiCategories":[]}')}}]);
