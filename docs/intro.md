@@ -43,7 +43,9 @@ local packet, instances = Zz:Serialize({
 local data = Zz:Deserialize(packet, instances)
 ```
 
-`packet` is a `buffer`. `instances` is a side array of any Roblox Instances found in the value, since Instance references cannot travel inside a buffer. Pass it back to Deserialize unchanged. If your data has no Instances the array is empty and can be ignored.
+`packet` is a `buffer`. `instances` is a side array of any Roblox Instances found in the value. A buffer holds bytes and an Instance reference has no byte form, so in the default reference mode they are returned alongside the packet rather than inside it. Pass it back to Deserialize unchanged. If your data has no Instances the array is empty and can be ignored.
+
+Under `InstanceMode = "full"` the hierarchy itself is encoded into the packet, and the array carries only Instances referenced from outside it. See [Options](./options#instancemode).
 
 ---
 
@@ -59,3 +61,6 @@ local data = Zz:Deserialize(packet, instances)
 | See what a packet costs | [`Zz:Inspect`](../api/Zzzz#Inspect) |
 | Time a round trip | [`Zz:Benchmark`](../api/Zzzz#Benchmark) |
 | See practical examples | [Use Cases](./guides/use-cases) |
+| Know what an option does | [Options](./options) |
+| Check a type is supported | [Supported Types](./types) |
+| Compare schema and adaptive | [Benchmarks](./benchmarks) |

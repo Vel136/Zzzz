@@ -67,6 +67,8 @@ Zzzz.new({
 
 Option names are matched without regard to case, so `StructureCache`, `structureCache`, and `structurecache` all set the same option. An option name that does not match any known option raises immediately rather than being silently ignored.
 
+See [Options](./options) for what each one is worth in bytes and when to reach for it.
+
 ### InstanceMode
 
 `"reference"` (default) stores Instances as indices into the side array. `"full"` serializes the whole hierarchy: ClassName, non-default properties, attributes, tags, and children, so it can be rebuilt in a different session or place.
@@ -178,7 +180,9 @@ local packet = Schema:Encode(data)
 local data = Schema:Decode(packet)
 ```
 
-Measured on 2,000 flat rows: 7.07 ms discovering, 2.69 ms replaying, for 1.6% more bytes.
+How much this buys depends entirely on the shape. Measured across thirteen datasets, the speedup ranged from 14.2x on a wide homogeneous float block down to 0.69x on heterogeneous recursive data, where a schema is slower than not having one. Bytes were identical on ten of the thirteen and never more than 2.8% larger. See [Benchmarks](./benchmarks).
+
+Derivation is paid once and has to amortise: derive per call and you are worse off than not using a schema at all.
 
 The sample must be representative rather than merely well formed. The schema inherits its ranges, so a sample where no player passed level 100 produces a schema that falls back when one does. It falls back safely and reports it in `stats.planMisses`; it never writes a truncated value.
 
@@ -236,6 +240,8 @@ print(Zz:BenchmarkToString(value, 100))
 ```
 
 Times a round trip. Reports per call milliseconds averaged over the given number of iterations, plus packet size. A warm up pass runs first so initial compilation does not skew the result.
+
+See [Benchmarks](./benchmarks) for schema and adaptive measured across thirteen dataset shapes.
 
 ---
 

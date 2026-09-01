@@ -1,5 +1,5 @@
 ---
-sidebar_position: 4
+sidebar_position: 7
 ---
 
 # FAQ
@@ -13,12 +13,6 @@ Answers to the questions that come up most often.
 **What is Zzzz?**
 
 Zzzz is zero schema serialization for Luau. Hand it any value and it works out the shape and the encoding on its own, with no type declarations to write and no schema to keep in sync.
-
----
-
-**What does Zzzz depend on?**
-
-Nothing. Zzzz is a self-contained module with no external dependencies.
 
 ---
 
@@ -99,7 +93,11 @@ It does not error. It produces a value that is wrong in a way nothing detects, a
 
 **When is a schema worth deriving?**
 
-When a server writes the same data shape repeatedly. A schema records the encoding decisions once so later encodes replay them instead of rediscovering them, roughly 2.6x faster for a small increase in bytes.
+When a server writes the same data shape repeatedly, and that shape is record-like rather than deeply nested.
+
+A schema records the encoding decisions once so later encodes replay them instead of rediscovering them. Measured across thirteen shapes, that ranged from 14.2x faster on wide uniform numeric data to 0.69x on heterogeneous recursive data, where it is slower than not having one. Bytes were identical on ten of the thirteen.
+
+Derivation is paid once, so it only pays off if you encode more than once with the same schema. Save it with `Schema:Save` rather than deriving on each server start. See [Benchmarks](./benchmarks).
 
 ---
 
