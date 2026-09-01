@@ -81,7 +81,7 @@ local packet, instances = Zz:Serialize(value)
 local value = Zz:Deserialize(packet, instances)
 ```
 
-Zzzz does not compress. It makes the bytes structurally small: narrow tags, varints, interning, references, packed rotations, and stops there. Layer general compression on top if you want it further reduced:
+Zzzz compresses structurally rather than through a general entropy coder: narrow tags, varints, interning, references, columnar layouts, and packed rotations, and stops there. Layer general compression on top if you want it further reduced:
 
 ```lua
 local packet = Zz:Serialize(data)

@@ -24,7 +24,7 @@ Nothing. Zzzz is a self-contained module with no external dependencies.
 
 **Does Zzzz compress data?**
 
-No. Zzzz makes the bytes structurally small: narrow tags, varints, interning, references, packed rotations, and stops there. If you want general compression on top, layer the engine's own:
+Yes, but structurally rather than through a general entropy coder like zstd: narrow tags, varints, interning, references, columnar layouts, and packed rotations. It does not run a general compression pass on top of that. If you want one anyway, layer the engine's own:
 
 ```lua
 local packet = Zz:Serialize(data)

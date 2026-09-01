@@ -9,7 +9,7 @@ sidebar_label: "Overview"
 
 Zzzz takes any Luau value and turns it into a compact buffer. There is no type declaration to write and no schema to keep in sync with your data. It walks the value, works out the shape, and picks the narrowest wire representation for every piece: a folded tag for a small integer, an interned reference for a repeated string or table, an integral form for a whole number Vector3, a bit packed run for a dense array of booleans.
 
-Zzzz does not compress. It makes the bytes structurally small and stops there. Layer general compression on top if you want it further reduced:
+Zzzz compresses structurally rather than through a general entropy coder: narrow tags, varints, interning, columnar layouts, and packed rotations, and stops there. Layer general compression on top if you want it further reduced:
 
 ```lua
 local packet = Zz:Serialize(data)
@@ -241,7 +241,7 @@ Times a round trip. Reports per call milliseconds averaged over the given number
 
 ## Strings
 
-For DataStores or anywhere else that will not take a buffer:
+For anywhere else that will not take a buffer:
 
 ```lua
 local text, instances = Zz:SerializeToString(value)
